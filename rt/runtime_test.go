@@ -86,9 +86,9 @@ func TestGoStack(t *testing.T) {
 	var stackVar int
 	stackPtr := uintptr(unsafe.Pointer(&stackVar))
 
-	if !(st.Lo <= stackPtr && stackPtr < st.Lo) {
+	if !(st.Lo <= stackPtr && stackPtr < st.Hi) {
 		t.Errorf("variable at %x, stack at [%x, %x)",
 			stackPtr, st.Lo, st.Lo)
 	}
-	t.Logf("current goroutine stack [%x, %x)", st.Lo, st.Lo)
+	t.Logf("current goroutine stack [%x, %x)", st.Lo, st.Hi)
 }

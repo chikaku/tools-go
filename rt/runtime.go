@@ -11,8 +11,8 @@ func NumTimers() (int, error) {
 		return 0, err
 	}
 
-	lock2(&allpLock)
-	defer unlock2(&allpLock)
+	lockallp()
+	defer unlockallp()
 
 	count := 0
 	for _, p := range allp() {
@@ -46,4 +46,15 @@ func GoStack() (Stack, error) {
 
 	st := *(*Stack)(unsafe.Pointer(uintptr(getgptr()) + offset))
 	return st, nil
+}
+
+// GoStackSize return stack size of current goroutine
+func GoStackSize() (int, error) {
+	stk, err := GoStack()
+	if err != nil {
+		return 0, err
+	}
+
+	size := stk.Hi - stk.Lo
+	return int(size), nil
 }

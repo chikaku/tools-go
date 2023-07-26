@@ -11,6 +11,6 @@ go get github.com/chikaku/tools-go
 - tools/network:
   - tcp tunnel
   - get public mapped address by STUN
-- tools/rt:
-  - get runtime information like Goid/GoStack/NumTimer
+- tools/rt(**Linux Only**):
+  - get runtime information like Goid/GoStack/GoStackSize/NumTimer
   - get `Offset` from unexposed structure (can be used for runtime structure)
